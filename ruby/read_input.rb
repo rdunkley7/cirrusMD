@@ -15,10 +15,10 @@ class ReadInput
     data.each do |patient|
       first_name = patient[:first_name]
       last_name = patient[:last_name]
-      patient[:dob] =  validate_date(patient[:dob].to_s)
+      patient[:dob] = validate_date(patient[:dob].to_s)
       member_id = patient[:member_id]
-      patient[:effective_date] = patient[:effective_date]
-      patient[:expiry_date] = patient[:expiry_date]
+      patient[:effective_date] = validate_date(patient[:effective_date].to_s)
+      patient[:expiry_date] = validate_date(patient[:expiry_date].to_s)
       patient[:phone_number] = validate_phone(patient[:phone_number].to_s)
 
 
@@ -31,18 +31,18 @@ class ReadInput
     #output_csv(valid_data, invalid_data)
   end
 
-
    def validate_date(date)
-    begin
-      date = Date.strptime(date).strftime("%Y-%m-%d")
-      return date
-    rescue
-      return nil
-    end
+     begin
+       date = Date.parse(date).strftime("%Y-%m-%d")
+       return date
+     rescue
+       return nil
+     end
    end
 
   def validate_phone(number)
-    return number.gsub(/\A(\+)|\D+/, '\1')
+     number = number.gsub(/^(\+)|\D/m, '\1')
+     return number unless number.length > 15
   end
 
   def output_csv(valid_data, invalid_data)
