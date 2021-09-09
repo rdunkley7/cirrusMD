@@ -45,7 +45,20 @@ class ReadInput
     return number.gsub(/\A(\+)|\D+/, '\1')
   end
 
+  def output_csv(valid_data, invalid_data)
+    CSV.open("output.csv", "w", write_headers: true, headers: %w[first_name last_name dob member_id effective_date expiry_date phone_number] ) do |csv|
+      csv << valid_data
+    end
 
-
-
+    File.open('report.txt', 'a') do |f|
+      f.puts "This report contains all patients with either invalid or missing."
+      f.puts "Unfortunately #{invalid_data.count} patients had an invalid data."
+    end
+    invalid_data.each do |patient|
+      File.open('report.txt', 'a') do |f|
+        f.puts "----"
+        f.puts patient
+      end
+    end
+  end
 end
