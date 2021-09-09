@@ -19,7 +19,8 @@ ruby 3.0.0
 2. Run command `bundle exec rspec spec/`
 
 # Next Steps
--- Remove whitespaces
-    -- Write tests to check for whitespace
--- Validate member_id. Some patient member_ids were invalid but since their other data (dates) were non-compliant they would be invalid regardless.
--- Improve the phone validator. Just found a quick gsub that works for most valid numbers, but may not handle edge cases well.
+- Remove whitespaces
+    - Write tests to check for whitespace
+- Validate member_id. Some patient member_ids were invalid but since their other data (dates) were non-compliant they would be invalid regardless.
+- Improve the phone validator. Just found a quick gsub that works for most valid numbers, but may not handle edge cases well.
+- I would clean up the output file (whitespaces and extra quotation marks).

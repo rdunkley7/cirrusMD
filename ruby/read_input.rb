@@ -28,7 +28,7 @@ class ReadInput
         valid_data.push(patient)
       end
     end
-    #output_csv(valid_data, invalid_data)
+    output_csv(valid_data, invalid_data)
   end
 
    def validate_date(date)
